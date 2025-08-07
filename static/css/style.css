@@ -1,0 +1,638 @@
+/* Voar - Yellow Theme CSS */
+
+:root {
+    --primary-yellow: #FFD700;
+    --secondary-yellow: #FFA500;
+    --light-yellow: #FFFACD;
+    --dark-yellow: #B8860B;
+    --text-dark: #333333;
+    --text-light: #666666;
+    --background: #FFFEF7;
+    --border-color: #E6E6E6;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--background);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* Navigation */
+.navbar {
+    background: linear-gradient(135deg, var(--primary-yellow), var(--secondary-yellow));
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px var(--shadow);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-title a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--dark-yellow);
+}
+
+/* Main Content */
+.main-content {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Flash Messages */
+.flash-messages {
+    margin-bottom: 1rem;
+}
+
+.flash-message {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    background-color: var(--light-yellow);
+    border-left: 4px solid var(--primary-yellow);
+}
+
+/* Forms */
+.auth-form, .post-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow);
+    max-width: 400px;
+    margin: 2rem auto;
+}
+
+.post-form {
+    max-width: 600px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    will-change: transform, background-color;
+}
+
+.btn-primary {
+    background-color: var(--primary-yellow);
+    color: var(--text-dark);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-yellow);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 8px var(--shadow);
+}
+
+.btn-secondary {
+    background-color: var(--light-yellow);
+    color: var(--text-dark);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-yellow);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 8px var(--shadow);
+}
+
+/* Posts */
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.post-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform, box-shadow;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px var(--shadow);
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.post-time {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.post-content p {
+    margin-bottom: 1rem;
+}
+
+.post-media {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+/* Flash Messages */
+.flash-messages {
+    margin-bottom: 1rem;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.flash-message {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    background-color: var(--light-yellow);
+    border-left: 4px solid var(--primary-yellow);
+    opacity: 0;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--light-yellow);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+    color: var(--text-light);
+}
+
+/* Form Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-yellow);
+    box-shadow: 0 0 8px var(--primary-yellow);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .auth-form, .post-form {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
+
+/* Additional UI Enhancements */
+
+/* Smooth page fade-in */
+body {
+    animation: pageFadeIn 0.8s ease forwards;
+    opacity: 0;
+    background: linear-gradient(135deg, #fff8dc, #fffacd);
+    background-attachment: fixed;
+    background-size: cover;
+    color: #333;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+@keyframes pageFadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Navbar shadow on scroll */
+.navbar.scrolled {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Input placeholders */
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* Button active states */
+.btn:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+/* Post content link styling */
+.post-content a {
+    color: var(--primary-yellow);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.post-content a:hover {
+    color: var(--secondary-yellow);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--primary-yellow);
+    border-radius: 4px;
+}
+
+/* Responsive image/video max height */
+.post-media {
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.post-media:hover {
+    transform: scale(1.05);
+}
+
+/* Loading spinner for buttons */
+.btn-loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.btn-loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 18px;
+    height: 18px;
+    margin: -9px 0 0 -9px;
+    border: 2px solid var(--primary-yellow);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Animate post cards on load */
+.post-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUpFadeIn 0.6s ease forwards;
+}
+
+.post-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+.post-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.post-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+.post-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+.post-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+@keyframes slideUpFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animate flash messages */
+.flash-message {
+    animation: flashFadeIn 0.8s ease forwards;
+    opacity: 0;
+}
+
+@keyframes flashFadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Form input focus glow */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-yellow);
+    box-shadow: 0 0 12px var(--primary-yellow);
+    transition: box-shadow 0.4s ease;
+}
+
+/* Add subtle shadow to auth forms */
+.auth-form, .post-form {
+    box-shadow: 0 8px 24px rgba(255, 215, 0, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+.auth-form:hover, .post-form:hover {
+    box-shadow: 0 12px 36px rgba(255, 215, 0, 0.5);
+}
+
+/* Button hover glow */
+.btn-primary:hover, .btn-secondary:hover {
+    box-shadow: 0 0 12px var(--primary-yellow);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .auth-form, .post-form {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
+
+/* Additional UI Enhancements - More Animations and Effects */
+
+/* Floating action button for create post */
+.fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--primary-yellow);
+    color: var(--text-dark);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 6px 12px rgba(255, 215, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+}
+
+.fab:hover {
+    background: var(--secondary-yellow);
+    transform: scale(1.1);
+}
+
+/* Smooth scroll for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Animated underline for nav links */
+.nav-links a {
+    position: relative;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: var(--primary-yellow);
+    transition: width 0.3s ease;
+    -webkit-transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+    left: 0;
+    background: var(--secondary-yellow);
+}
+
+/* Card shadow pulse on hover */
+.post-card:hover {
+    /* Remove any animation that causes disappearance */
+    animation: none;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px var(--shadow);
+}
+
+@keyframes pulseShadow {
+    from {
+        box-shadow: 0 8px 16px var(--shadow);
+    }
+    to {
+        box-shadow: 0 12px 24px rgba(255, 215, 0, 0.7);
+    }
+}
+
+/* Button ripple effect */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:after {
+    content: "";
+    position: absolute;
+    background: rgba(255, 215, 0, 0.5);
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.5s, opacity 1s;
+}
+
+.btn:active:after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition: 0s;
+}
+
+/* Smooth fade for flash messages */
+.flash-messages {
+    animation: flashFadeIn 1s ease forwards;
+}
+
+/* Enhanced form input focus */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    box-shadow: 0 0 16px var(--primary-yellow);
+    border-color: var(--secondary-yellow);
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+/* New UI Animations */
+
+/* Bounce animation for buttons */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+.btn-primary {
+    animation: bounce 3s infinite;
+}
+
+/* Slide in animation for nav */
+.navbar {
+    animation: slideInDown 0.8s ease forwards;
+    transform: translateY(-100%);
+}
+
+@keyframes slideInDown {
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Pulse animation for floating action button */
+.fab {
+    animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+    }
+}
+
+/* Fade in animation for create post form */
+.post-form {
+    animation: fadeInUp 0.8s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
