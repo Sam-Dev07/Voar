@@ -185,7 +185,7 @@ app.post('/create_post', upload.single('media'), (req, res) => {
 
   db.run(
     'INSERT INTO posts (user_id, content, media_filename) VALUES (?, ?, ?)',
-    [req.session.userId, content, mediaFilename],
+    [req.session.userId, content, media_filename],
     function(err) {
       if (err) {
         console.error(err);
