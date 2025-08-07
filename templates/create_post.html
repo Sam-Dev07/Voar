@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Create Post - Voar{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="post-form">
+        <h2>Create New Post</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="content">What's on your mind?</label>
+                <textarea id="content" name="content" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="media">Add image or video (optional)</label>
+                <input type="file" id="media" name="media" accept="image/*,video/*">
+            </div>
+            <button type="submit" class="btn btn-primary">Post</button>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

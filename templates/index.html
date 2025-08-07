@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Voar{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Recent Posts</h2>
+    
+    {% if posts %}
+        <div class="posts-container">
+            {% for post in posts %}
+                <div class="post-card">
+                    <div class="post-header">
+                        <strong>@{{ post[4] }}</strong>
+                        <span class="post-time">{{ post[3] }}</span>
+                    </div>
+                    <div class="post-content">
+                        <p>{{ post[1] }}</p>
+                        {% if post[2] %}
+                            {% if post[2].endswith(('.mp4', '.avi', '.mov', '.webm')) %}
+                                <video controls class="post-media">
+                                    <source src="{{ url_for('static', filename='uploads/' + post[2]) }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            {% else %}
+                                <img src="{{ url_for('static', filename='uploads/' + post[2]) }}" alt="Post media" class="post-media">
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No posts yet. Be the first to create one!</p>
+    {% endif %}
+</div>
+{% endblock %}
