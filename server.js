@@ -12,7 +12,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Set view engine
-app.set('view engine', 'ejs');
+app.set('view engine', 'html');
+app.engine('html', require('ejs').renderFile);
 app.set('views', path.join(__dirname, 'templates'));
 
 // Security middleware
