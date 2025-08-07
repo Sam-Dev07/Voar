@@ -155,4 +155,12 @@ def create_post():
 
 if __name__ == '__main__':
     init_db()
-    app.run(debug=True)
+    
+    # Use PORT environment variable for deployment, fallback to 5000 for local development
+    port = int(os.environ.get('PORT', 5000))
+    
+    # For production deployment, set debug=False and host='0.0.0.0'
+    if os.environ.get('ENVIRONMENT') == 'production':
+        app.run(host='0.0.0.0', port=port, debug=False)
+    else:
+        app.run(host='127.0.0.1', port=port, debug=True)
