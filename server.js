@@ -12,7 +12,16 @@ const helmet = require('helmet');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Set view engine
+// Ensure db directory exists
+const dbDir = path.join(__dirname, 'db');
+if (!fs.existsSync(dbDir)) {
+  fs.mkdirSync(dbDir, { recursive: true });
+}
+
+// Database setup
+const db = new sqlite3.Database(path.join(dbDir, 'voar.db'));
+
+// View engine
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
 app.set('views', path.join(__dirname, 'templates'));
@@ -28,7 +37,7 @@ app.use(express.static('public'));
 app.use(session({
   store: new SQLiteStore({
     db: 'sessions.sqlite',
-    dir: './db',
+    dir: dbDir,
   }),
   secret: process.env.SESSION_SECRET || 'your-secret-key-change-this-in-production',
   resave: false,
@@ -39,10 +48,10 @@ app.use(session({
   },
 }));
 
-// Multer configuration for file uploads
+// Multer configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const uploadDir = 'public/uploads';
+    const uploadDir = path.join(__dirname, 'public/uploads');
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir, { recursive: true });
     }
@@ -66,9 +75,6 @@ const upload = multer({
     }
   }
 });
-
-// Database setup
-const db = new sqlite3.Database('voar.db');
 
 // Initialize database
 function initDB() {
@@ -199,13 +205,13 @@ app.post('/create_post', upload.single('media'), (req, res) => {
   );
 });
 
-// Error handling
+// Error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something went wrong!');
 });
 
-// Initialize database and start server
+// Start server
 initDB();
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
