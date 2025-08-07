@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const path = require('path');
 const fs = require('fs');
 const session = require('express-session');
+const SQLiteStore = require('connect-sqlite3')(session);
 const cors = require('cors');
 const helmet = require('helmet');
 
@@ -25,10 +26,17 @@ app.use(express.static('public'));
 
 // Session configuration
 app.use(session({
+  store: new SQLiteStore({
+    db: 'sessions.sqlite',
+    dir: './db',
+  }),
   secret: process.env.SESSION_SECRET || 'your-secret-key-change-this-in-production',
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: process.env.NODE_ENV === 'production' }
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+  },
 }));
 
 // Multer configuration for file uploads
@@ -85,7 +93,6 @@ function initDB() {
 }
 
 // Routes
-// Home page
 app.get('/', (req, res) => {
   if (!req.session.userId) {
     return res.redirect('/login');
@@ -105,7 +112,6 @@ app.get('/', (req, res) => {
   });
 });
 
-// Registration page
 app.get('/register', (req, res) => {
   res.render('register');
 });
@@ -134,7 +140,6 @@ app.post('/register', async (req, res) => {
   }
 });
 
-// Login page
 app.get('/login', (req, res) => {
   res.render('login');
 });
@@ -161,13 +166,11 @@ app.post('/login', (req, res) => {
   );
 });
 
-// Logout
 app.post('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/login');
 });
 
-// Create post page
 app.get('/create_post', (req, res) => {
   if (!req.session.userId) {
     return res.redirect('/login');
@@ -185,7 +188,7 @@ app.post('/create_post', upload.single('media'), (req, res) => {
 
   db.run(
     'INSERT INTO posts (user_id, content, media_filename) VALUES (?, ?, ?)',
-    [req.session.userId, content, media_filename],
+    [req.session.userId, content, mediaFilename],
     function(err) {
       if (err) {
         console.error(err);
