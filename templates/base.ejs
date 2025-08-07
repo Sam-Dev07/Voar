@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title || 'Voar - Simple Social Media' %></title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <h1 class="nav-title">
+        <a href="/" id="voar-title">Voar</a>
+      </h1>
+      <div class="nav-links">
+        <% if (session && session.userId) { %>
+          <a href="/create_post">Create Post</a>
+          <form action="/logout" method="POST" style="display:inline;">
+            <button type="submit">Logout (<%= session.username %>)</button>
+          </form>
+        <% } else { %>
+          <a href="/login">Login</a>
+          <a href="/register">Register</a>
+        <% } %>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <% if (messages && messages.length > 0) { %>
+      <div class="flash-messages">
+        <% messages.forEach(message => { %>
+          <div class="flash-message"><%= message %></div>
+        <% }); %>
+      </div>
+    <% } %>
+
+    <!-- Page content will go here -->
+    <%- body %>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 Voar - Simple Social Media Platform</p>
+  </footer>
+
+  <script>
+    document.getElementById('voar-title').addEventListener('click', function(event) {
+      event.preventDefault();
+      window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+    });
+  </script>
+</body>
+</html>
